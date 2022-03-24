@@ -1,0 +1,18 @@
+<% unless @user.errors.empty? %>
+  <div>Errors:</div>
+    <ul>
+      <%= @user.errors.each do |error| %>
+      <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+<% end %>
+
+<%= form_with model: @user, method: :patch, data: { turbo: 'false' } do |form| %>
+  <%= form.label :username %>
+  <%= form.text_field :username, placeholder: 'foobar' %>
+  <%= form.label :email %>
+  <%= form.text_field :email, placeholder: 'foo@bar.com' %>
+  <%= form.label :password %>
+  <%= form.password_field :password %>
+  <%= form.submit %>
+<% end %>
