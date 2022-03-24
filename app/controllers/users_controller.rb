@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def show
+    @user = User.find(params[:id])
+  end
+
   def new
     @user = User.new
   end
@@ -21,8 +25,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if @user.update(params[:id])
-      redirect_to edit_user_path
+    if @user.update(user_params)
+      redirect_to @user
     else
       render :edit
     end
